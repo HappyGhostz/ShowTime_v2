@@ -28,19 +28,19 @@ android {
         }
     }
     //根据isBuildApp加载不同版本的清单文件
-//    sourceSets{
-//        main{
-//            if(rootProject.ext.isBuildApp){
-//                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
-//            }else{
-//                manifest.srcFile 'src/main/release/AndroidManifest.xml'
-//                java{
-////                     exclude 'debug/**'
-//                    exclude 'debug/**'
-//                }
-//            }
-//        }
-//    }
+    sourceSets{
+        main{
+            if(rootProject.ext.isBuildApp){
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            }else{
+                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+                java{
+//                     exclude 'debug/**'
+                    exclude 'debug/**'
+                }
+            }
+        }
+    }
 }
 
 dependencies {
@@ -56,5 +56,6 @@ dependencies {
     compile system_compile.recyclerview_v7
     compile system_compile.design
     compile system_compile.support_v4
+    compile project(':resource')
 
 }

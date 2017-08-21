@@ -14,6 +14,8 @@ import com.example.module1.data.NewsInfo;
 import com.example.module1.net.NewsApi;
 import com.example.resource.BaseApplication;
 import com.example.resource.netutile.RetrofitService;
+import com.example.resource.rxbus.RxBus;
+import com.example.resource.rxmessage.RxBusMessageForText;
 
 import org.reactivestreams.Subscription;
 
@@ -61,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
         RvAdapter mRvAdapter = new RvAdapter(mBaseMyContext, mNewsInfos);
         mRv.setAdapter(mRvAdapter);
         mRv.addItemDecoration(new RvItemDecoration(LinearLayoutManager.VERTICAL));
+        mRvAdapter.setOnitemClickListener(new RvAdapter.OnItemClickListener() {
+            @Override
+            public void onClick() {
+                RxBus rxBus = RxBus.getIntanceBus();
+                rxBus.post(new RxBusMessageForText("已经到过Module1"));
+            }
+        });
     }
 
     private void initNet() {

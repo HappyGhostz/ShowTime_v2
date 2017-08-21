@@ -32,7 +32,7 @@ ext {
     //向前兼容，保存新旧两种逻辑，并通过 if-else 方法来判断执行哪种逻辑
     targetSdkVersion = 22
 
-    isBuildApp=true;//false:作为Lib组件存在， true:作为application存在
+    isBuildApp=false;//false:作为Lib组件存在， true:作为application存在
 
     systemSupport = [
             appcampatV7 : 'com.android.support:appcompat-v7:25.3.1',

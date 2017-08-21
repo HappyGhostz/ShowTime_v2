@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.example.module2.MainActivity">
+
+
+    <Button
+        android:id="@+id/m2_button"
+        android:layout_width="139dp"
+        android:layout_height="115dp"
+        android:layout_marginLeft="139dp"
+        android:layout_marginStart="111dp"
+        android:layout_marginTop="163dp"
+        android:text="传递数据"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+</android.support.constraint.ConstraintLayout>

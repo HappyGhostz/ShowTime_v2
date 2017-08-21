@@ -35,4 +35,5 @@ dependencies {
     compile resourcelib.retrofit
     compile resourcelib.gson
     compile resourcelib.rxadapter
+
 }
