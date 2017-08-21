@@ -19,6 +19,10 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okio.Buffer;
+import retrofit2.Retrofit;
+
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @author Zhao Chenping
@@ -32,22 +36,32 @@ public class RetrofitService {
     static final long CACHE_STALE_SEC = 60 * 60 * 24 * 1;
     //查询缓存的Cache-Control设置，为if-only-cache时只查询缓存而不会请求服务器，max-stale可以配合设置缓存失效时间
     private static final String CACHE_CONTROL_CACHE = "only-if-cached, max-stale=" + CACHE_STALE_SEC;
+    private static String baseUrl="http://c.3g.163.com/";
+
     /**
      * 初始化网络通信服务
      * @param mContext
      */
-    public static void init(Context mContext){
+    public static Retrofit init(Context mContext){
         File cacheDir = mContext.getCacheDir();
         File file = new File(cacheDir, "OkHttpCache");
         // 指定缓存路径,缓存大小100Mb
         Cache cache = new Cache(file,1024*1024*1024);
-        OkHttpClient okHttpClient = new OkHttpClient().newBuilder().cache(cache)
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().cache(cache)
                 .retryOnConnectionFailure(true)//重连
                 .addInterceptor(mLogginginterceptor)
                 .addInterceptor(mCacheContralInterceptor)
                 .addNetworkInterceptor(mCacheContralInterceptor)
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .baseUrl(baseUrl)
+                .build();
+        return retrofit;
+
     }
 
     /**

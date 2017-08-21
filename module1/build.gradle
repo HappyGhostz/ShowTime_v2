@@ -28,19 +28,23 @@ android {
     }
 
     //根据isBuildApp加载不同版本的清单文件
-//    sourceSets{
-//        main{
-//            if(rootProject.ext.isBuildApp){
-//                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
-//            }else{
-//                manifest.srcFile 'src/main/release/AndroidManifest.xml'
-//                java{
-////                     exclude 'debug/**'
-//                    exclude 'debug/**'
-//                }
-//            }
-//        }
-//    }
+    sourceSets{
+        main{
+            if(rootProject.ext.isBuildApp){
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            }else{
+                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+                java{
+//                     exclude 'debug/**'
+                    exclude 'debug/**'
+                }
+            }
+        }
+    }
+    //这里不小心弄成了jar包冲突,这是解决办法
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'  //这里找到你自己错的那行，把Duplicate files copied in APK后面的复制上来
+    }
 }
 
 dependencies {
@@ -54,5 +58,7 @@ dependencies {
     compile system_compile.recyclerview_v7
     compile system_compile.design
     compile system_compile.support_v4
+    compile system_compile.glide
+    compile project(':resource')
     testCompile 'junit:junit:4.12'
 }

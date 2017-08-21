@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/m1_rlayout"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/m1_iv_icon"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:layout_margin="10dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"/>
+
+
+    <TextView
+        android:id="@+id/m1_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:text="里约奥运会"
+        android:textColor="#000000"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:layout_alignTop="@+id/m1_iv_icon"
+        android:layout_toRightOf="@+id/m1_iv_icon"
+        android:layout_toEndOf="@+id/m1_iv_icon" />
+
+    <TextView
+        android:id="@+id/m1_tv_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/m1_iv_icon"
+        android:layout_toRightOf="@+id/m1_iv_icon"
+        android:text="网易原创"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+
+    <TextView
+        android:id="@+id/m1_tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/m1_tv_source"
+        android:layout_marginRight="10dp"
+        android:text="2016-08-23 11:48:46"/>
+
+</RelativeLayout>
